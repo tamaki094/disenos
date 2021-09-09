@@ -36,8 +36,6 @@ class CardTable extends StatelessWidget {
               color: Colors.deepPurpleAccent,
               icon: Icons.movie,
               text: 'Movies'),
-          _SingleCard(
-              color: Colors.cyanAccent, icon: Icons.computer, text: 'Computer')
         ]),
       ],
     );
