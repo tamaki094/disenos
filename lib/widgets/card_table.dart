@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 class CardTable extends StatelessWidget {
@@ -32,12 +34,9 @@ class CardTable extends StatelessWidget {
               color: Colors.cyanAccent, icon: Icons.computer, text: 'Computer')
         ]),
         TableRow(children: [
+          _SingleCard(color: Colors.brown, icon: Icons.movie, text: 'Movies'),
           _SingleCard(
-              color: Colors.deepPurpleAccent,
-              icon: Icons.movie,
-              text: 'Movies'),
-          _SingleCard(
-              color: Colors.cyanAccent, icon: Icons.computer, text: 'Computer')
+              color: Colors.brown, icon: Icons.coffee, text: 'Cafe Internet')
         ]),
       ],
     );
@@ -57,24 +56,32 @@ class _SingleCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.all(15),
-      height: 180,
-      decoration: BoxDecoration(
-          color: Color.fromRGBO(62, 66, 107, 0.7),
-          borderRadius: BorderRadius.circular(20)),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          CircleAvatar(
-            backgroundColor: this.color,
-            child: Icon(this.icon),
-            radius: 30,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(20),
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+          child: Container(
+            height: 180,
+            decoration: BoxDecoration(
+                color: Color.fromRGBO(62, 66, 107, 0.7),
+                borderRadius: BorderRadius.circular(20)),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CircleAvatar(
+                  backgroundColor: this.color,
+                  child: Icon(this.icon),
+                  radius: 30,
+                ),
+                SizedBox(height: 10),
+                Text(
+                  this.text,
+                  style: TextStyle(color: this.color, fontSize: 18),
+                )
+              ],
+            ),
           ),
-          SizedBox(height: 10),
-          Text(
-            this.text,
-            style: TextStyle(color: this.color, fontSize: 18),
-          )
-        ],
+        ),
       ),
     );
   }
